@@ -12,7 +12,7 @@ FUNCTIONS_DIR="$(dirname "$0")/functions"
 # ---- ---- Initialize global vars ---- ----
 
 export module="" 
-export DEFAULTDIR="${HOME}/Proiektuak/MutInstr/eurorack-master";
+export DEFAULTDIR="${HOME}/Projects/MutInstr/eurorack-master";
 export in_date=`date +"%Y%m%d%H%M"`;
 
 
