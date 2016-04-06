@@ -61,11 +61,27 @@ build_branches () {
 upload_branches () {
 	make -f ${module}/makefile bootstrap_all
 
-	/usr/bin/avrdude -F -V -p m88p -c avrispmkII -P usb -B 10 -e -u \
-		-U efuse:w:0xf8:m -U hfuse:w:0xdd:m -U lfuse:w:0xe2:m \
-		-U flash:w:build/branches/branches.hex:i \
-		-U flash:w:build/branches_bootloader/branches_bootloader.hex:i \
-		-U lock:w:0x2f:m
+	echo "Did that command work as expected?(y/n)"
+	read answer
+
+	worked=${answer,,}
+	case ${worked} in
+	y | yes)
+		echo "Congratulations! Well done!"
+		;;
+	n | no)
+		echo "Let gonna try with this other one: "
+
+		/usr/bin/avrdude -F -V -p m88p -c avrispmkII -P usb -B 10 -e -u \
+			-U efuse:w:0xf8:m -U hfuse:w:0xdd:m -U lfuse:w:0xe2:m \
+			-U flash:w:build/branches/branches.hex:i \
+			-U flash:w:build/branches_bootloader/branches_bootloader.hex:i \
+			-U lock:w:0x2f:m
+		;;
+	*)
+		"Bye bye"
+		;;
+	esac
 
 }
 
