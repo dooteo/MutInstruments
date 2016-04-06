@@ -6,7 +6,7 @@
 
 FUNCTIONS_DIR="$(dirname "$0")/functions"
 
-. ${FUNCTIONS_DIR}/show_options.sh
+. ${FUNCTIONS_DIR}/auxiliary.sh
 . ${FUNCTIONS_DIR}/draw_mutinst_board.sh
 
 # ---- ---- Initialize global vars ---- ----
