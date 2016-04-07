@@ -5,29 +5,29 @@
 
  show_help () {
 	echo -e "
-	Usage: $0 [option]
+Usage: $0 [option]
 
-	-c      Compile whole module and upload brand new firmare. Default.	
-	-d      Show diagram how to connect.
-	-l      Show last command to upload firmware.
-	-h      Show this help.
+  -c      Compile whole module and upload brand new firmare. Default.	
+  -d      Show diagram how to connect.
+  -l      Show last command to upload firmware.
+  -h      Show this help.
 	"
 }
 
  select_module () {
 	echo "
-	Enter module's number to draw its board.
+Enter module's number to draw its board.
 
-	1 - Braids - A
-	2 - Branches - B
-	3 - Clouds - C
-	4 - Elements - E
-	5 - Frames - F
-	6 - Grids - G
-	7 - Peaks - P
-	8 - Streams - S
-	9 - Tides - T
-	10 - Yarns - Y
+  1 - Braids - A
+  2 - Branches - B
+  3 - Clouds - C
+  4 - Elements - E
+  5 - Frames - F
+  6 - Grids - G
+  7 - Peaks - P
+  8 - Streams - S
+  9 - Tides - T
+  10 - Yarns - Y
 	"
 
 	read module;

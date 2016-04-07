@@ -15,39 +15,49 @@ export module=""
 export DEFAULTDIR="${HOME}/Projects/MutInstr/eurorack-master";
 export in_date=`date +"%Y%m%d%H%M"`;
 
-
-if [ ! -z $1 ]; then
-
-	case $1 in
-	"-h")
-		show_help;
-		;;
-
-	"-d")
-		if [ "${module}" = "" ]; then
-			select_module;
-		fi
-
-		draw_board_${module};
-		exit 0;
-		;;
-
-	"-l")
-		if [ "${module}" = "" ]; then
-			select_module;
-		fi
-		. ${FUNCTIONS_DIR}/ftn_${module}.sh;
-		list_command_${module};
-		exit 0;
-		;;
-
-	"-c")
-		;;
-	esac
-
-elif
-
-	echo "You must choose an option to run with. Bye!"
+if [ -z $1 ] || [ "$1" = "-h" ]; then
+	show_help;
+	echo "You must choose an option to run with. Bye!";
+	exit 0;
 fi
+
+case $1 in
+"-d")
+	select_module;
+	draw_board_${module};
+	exit 0;
+	;;
+
+"-l")
+	select_module;
+	. ${FUNCTIONS_DIR}/ftn_${module}.sh;
+
+	list_command_${module};
+	exit 0;
+	;;
+
+"-c")
+	select_module;
+	. ${FUNCTIONS_DIR}/ftn_${module}.sh;
+
+	echo " Enter EuroRack Master path (from HOME) ";
+	echo " or default [${DEFAULTDIR}]";
+	read eurorack_path;
+
+	if [ "${eurorack_path}"="" ]; then
+		echo -e "Using default path\n${DEFAULTDIR}";
+		export BASEDIR=${DEFAULTDIR};
+	else 
+		export BASEDIR=${HOME}/${eurorack_path};
+	fi
+
+	build_${module};
+	;;
+*)
+	show_help;
+	echo "You must choose an option to run with. Bye!";
+	exit 0;
+	;;
+esac
 
 
